@@ -14,7 +14,7 @@ using static Xamarin.CommunityToolkit.Markup.GridRowsColumns;
 
 namespace GitTrends
 {
-	public class SplashScreenPage : BaseContentPage
+	public class SplashScreenPage : BaseContentPage<SplashScreenViewModel>
 	{
 		readonly IEnumerator<string> _statusMessageEnumerator = new List<string>
 		{
@@ -226,7 +226,7 @@ namespace GitTrends
 					var explodeImageTask = Task.WhenAll(Content.ScaleTo(100, 250, Easing.CubicOut), Content.FadeTo(0, 250, Easing.CubicIn));
 					BackgroundColor = (Color)Application.Current.Resources[nameof(BaseTheme.PageBackgroundColor)];
 
-					var repositoryPage = ContainerService.Container.Resolve<RepositoryPage>();
+					var repositoryPage = ServiceCollectionService.Container.Resolve<RepositoryPage>();
 
 					if (_firstRunService.IsFirstRun)
 						repositoryPage.Appearing += HandleRepositoryPageAppearing;
@@ -242,7 +242,7 @@ namespace GitTrends
 						//Yield the UI thread to allow MainPage to be set
 						await Task.Delay(TimeSpan.FromMilliseconds(500));
 
-						var onboardingCarouselPage = ContainerService.Container.Resolve<OnboardingCarouselPage>();
+						var onboardingCarouselPage = ServiceCollectionService.Container.Resolve<OnboardingCarouselPage>();
 						await repositoryPage.Navigation.PushModalAsync(onboardingCarouselPage);
 					}
 				});

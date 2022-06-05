@@ -163,7 +163,7 @@ namespace GitTrends
 
 		async Task NavigateToWelcomePage()
 		{
-			var welcomePage = ContainerService.Container.Resolve<WelcomePage>();
+			var welcomePage = ServiceCollectionService.Container.Resolve<WelcomePage>();
 
 			//Allow RepositoryPage to appear briefly before loading 
 			await Task.Delay(TimeSpan.FromMilliseconds(250));
@@ -172,13 +172,13 @@ namespace GitTrends
 
 		Task NavigateToSettingsPage()
 		{
-			var settingsPage = ContainerService.Container.Resolve<SettingsPage>();
+			var settingsPage = ServiceCollectionService.Container.Resolve<SettingsPage>();
 			return MainThread.InvokeOnMainThreadAsync(() => Navigation.PushAsync(settingsPage));
 		}
 
 		Task NavigateToTrendsPage(in Repository repository)
 		{
-			var trendsCarouselPage = ContainerService.Container.Resolve<TrendsCarouselPage>(new TypedParameter(typeof(Repository), repository));
+			var trendsCarouselPage = ServiceCollectionService.Container.Resolve<TrendsCarouselPage>(new TypedParameter(typeof(Repository), repository));
 			return MainThread.InvokeOnMainThreadAsync(() => Navigation.PushAsync(trendsCarouselPage));
 		}
 

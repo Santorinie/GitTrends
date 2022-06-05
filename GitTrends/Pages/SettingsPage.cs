@@ -202,7 +202,7 @@ namespace GitTrends
 		{
 			AnalyticsService.Track("About Button Tapped");
 
-			var aboutPage = ContainerService.Container.Resolve<AboutPage>();
+			var aboutPage = ServiceCollectionService.Container.Resolve<AboutPage>();
 			await Navigation.PushAsync(aboutPage);
 		}
 

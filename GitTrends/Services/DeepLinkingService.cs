@@ -74,7 +74,7 @@ namespace GitTrends
 		{
 			if (Application.Current is App)
 			{
-				var trendsPage = ContainerService.Container.Resolve<ViewsClonesTrendsPage>(new TypedParameter(typeof(Repository), repository));
+				var trendsPage = ServiceCollectionService.Container.Resolve<ViewsClonesTrendsPage>(new TypedParameter(typeof(Repository), repository));
 
 				return _mainThread.InvokeOnMainThreadAsync(async () =>
 				{
